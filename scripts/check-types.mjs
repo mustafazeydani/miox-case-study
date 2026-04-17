@@ -91,7 +91,9 @@ child.on("close", (exitCode) => {
   }
 
   if (keptBlocks.length > 0) {
-    process.stderr.write(`${keptBlocks.map((block) => block.join("\n")).join("\n")}\n`);
+    process.stderr.write(
+      `${keptBlocks.map((block) => block.join("\n")).join("\n")}\n`,
+    );
     process.exit(1);
   }
 
