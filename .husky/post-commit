@@ -1,0 +1,3 @@
+[ "$SKIP_VERSION_BUMP_AMEND" = "1" ] && exit 0
+
+pnpm bump:version-from-commit -- --from-head --amend-head
