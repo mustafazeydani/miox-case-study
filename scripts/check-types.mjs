@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 
-const GENERATED_PATH_PREFIX = "src/api/generated/";
+const GENERATED_PATH_PREFIX = "src/orval/generated/";
 const TSC_DIAGNOSTIC_PATTERN =
   /^(?:[A-Za-z]:)?[^:\n]+?\(\d+,\d+\): error TS\d+:/;
 const ROOT_TSC_DIAGNOSTIC_PATTERN = /^error TS\d+:/;

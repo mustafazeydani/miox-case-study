@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { AppQueryClientProvider } from "@/components/providers/query-client-provider";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -26,7 +27,9 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", inter.variable)}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <AppQueryClientProvider>{children}</AppQueryClientProvider>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,3 @@
-import { env } from "@/config/env";
-
 export type ErrorType<Error> = Error;
 export type BodyType<BodyData> = BodyData;
 
@@ -10,23 +8,25 @@ type CustomInstanceOptions = Omit<RequestInit, "body"> & {
   params?: Record<string, QueryValue | QueryValue[]>;
 };
 
-const baseUrl = env.NEXT_PUBLIC_API_URL;
-
 function buildUrl(
   url: string,
   params?: Record<string, QueryValue | QueryValue[]>,
 ) {
-  const targetUrl = new URL(url, baseUrl);
+  const isAbsoluteUrl = /^https?:\/\//i.test(url);
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const targetUrl = isAbsoluteUrl || baseUrl ? new URL(url, baseUrl) : null;
 
   if (!params) {
-    return targetUrl.toString();
+    return targetUrl?.toString() ?? url;
   }
+
+  const searchParams = targetUrl?.searchParams ?? new URLSearchParams();
 
   for (const [key, value] of Object.entries(params)) {
     if (Array.isArray(value)) {
       for (const item of value) {
         if (item !== undefined && item !== null) {
-          targetUrl.searchParams.append(key, String(item));
+          searchParams.append(key, String(item));
         }
       }
 
@@ -34,11 +34,16 @@ function buildUrl(
     }
 
     if (value !== undefined && value !== null) {
-      targetUrl.searchParams.set(key, String(value));
+      searchParams.set(key, String(value));
     }
   }
 
-  return targetUrl.toString();
+  if (targetUrl) {
+    return targetUrl.toString();
+  }
+
+  const queryString = searchParams.toString();
+  return queryString ? `${url}?${queryString}` : url;
 }
 
 function serializeBody(body: CustomInstanceOptions["body"], headers: Headers) {
