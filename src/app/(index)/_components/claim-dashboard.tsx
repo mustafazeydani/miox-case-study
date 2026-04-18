@@ -23,7 +23,7 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
   return (
     <section
       aria-labelledby="claim-dashboard-heading"
-      className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-10 pb-32 sm:px-6 sm:pb-36 lg:px-8 lg:py-14 lg:pb-24"
+      className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 overflow-x-clip px-4 py-10 pb-32 sm:px-6 sm:pb-36 lg:px-8 lg:py-14 lg:pb-24"
     >
       <div className="flex flex-col gap-4">
         <div className="flex justify-end">
@@ -91,7 +91,7 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_22rem] xl:items-start">
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           <ClaimSummaryStrip viewModel={viewModel} />
           <ClaimProcessStepper
             nodes={viewModel.apiNodes}

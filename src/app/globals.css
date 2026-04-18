@@ -243,11 +243,21 @@
   }
 
   .dashboard-scrollbar::-webkit-scrollbar {
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.18rem;
+    height: 0.18rem;
   }
 
   .dashboard-scrollbar::-webkit-scrollbar-thumb {
-    border-width: 1px;
+    border-width: 0;
+  }
+
+  .dashboard-scrollbar {
+    scrollbar-color: color-mix(
+        in oklab,
+        var(--primary) 60%,
+        var(--muted-foreground)
+      )
+      transparent;
+    scrollbar-width: thin;
   }
 }

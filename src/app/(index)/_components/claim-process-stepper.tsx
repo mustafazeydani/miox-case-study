@@ -93,7 +93,7 @@ export function ClaimProcessStepper({
 
   return (
     <>
-      <Card className="surface-glass rounded-[1.75rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
+      <Card className="surface-glass overflow-hidden rounded-[1.75rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
         <CardHeader className="gap-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-3">
@@ -145,7 +145,7 @@ export function ClaimProcessStepper({
           </div>
         </CardHeader>
 
-        <CardContent className="flex flex-col gap-6">
+        <CardContent className="flex min-w-0 flex-col gap-6 overflow-hidden">
           <Separator />
 
           <Tabs
@@ -157,13 +157,13 @@ export function ClaimProcessStepper({
                 handleStepChange(nextIndex);
               }
             }}
-            className="gap-6"
+            className="min-w-0 gap-6 overflow-hidden"
           >
-            <div className="dashboard-scrollbar -mx-1 overflow-x-auto overflow-y-hidden px-1 py-1 pb-3">
+            <div className="dashboard-scrollbar w-full min-w-0 max-w-full touch-pan-x overflow-x-auto overflow-y-hidden overscroll-x-contain p-px pb-1.5">
               <TabsList
                 variant="line"
                 aria-label="Claim process steps"
-                className="h-auto min-h-0 flex-nowrap items-stretch gap-2 rounded-none p-0 pr-1"
+                className="h-auto min-h-0 w-max min-w-full flex-nowrap items-stretch justify-start gap-2 rounded-none p-0 pr-1 pb-0.5 group-data-horizontal/tabs:h-auto"
               >
                 {nodes.map((node, index) => {
                   const definition = getClaimNodeRegistryItem(node.kind);
@@ -172,15 +172,15 @@ export function ClaimProcessStepper({
                     <TabsTrigger
                       key={node.id}
                       value={node.id}
-                      className="group/step h-auto min-w-36 shrink-0 flex-col items-start rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 transition-colors after:hidden data-[state=active]:border-primary/40 data-[state=active]:bg-primary/18 data-[state=active]:text-foreground data-[state=active]:shadow-[0_16px_28px_-22px_color-mix(in_oklab,var(--primary)_80%,transparent)] data-[state=active]:ring-1 data-[state=active]:ring-primary/30"
+                      className="group/step h-auto min-h-[4.9rem] min-w-[10.5rem] max-w-[10.5rem] flex-none shrink-0 flex-col items-start justify-start gap-1 whitespace-normal rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 transition-colors after:hidden data-[state=active]:border-primary/40 data-[state=active]:bg-primary/18 data-[state=active]:text-foreground data-[state=active]:shadow-[0_16px_28px_-22px_color-mix(in_oklab,var(--primary)_80%,transparent)] data-[state=active]:ring-1 data-[state=active]:ring-primary/30 sm:min-w-44 sm:max-w-44"
                     >
-                      <span className="font-medium text-[0.68rem] uppercase tracking-[0.18em]">
+                      <span className="font-medium text-[0.68rem] uppercase leading-none tracking-[0.18em]">
                         Step {index + 1}
                       </span>
-                      <span className="truncate font-medium text-sm">
+                      <span className="line-clamp-1 w-full font-medium text-sm leading-5">
                         {definition.stepperLabel}
                       </span>
-                      <span className="max-w-full truncate text-muted-foreground text-xs leading-5 transition-colors group-data-[state=active]/step:text-foreground/72">
+                      <span className="line-clamp-1 w-full text-[0.72rem] text-muted-foreground leading-4 transition-colors group-data-[state=active]/step:text-foreground/72">
                         {definition.eyebrow}
                       </span>
                     </TabsTrigger>
@@ -189,7 +189,10 @@ export function ClaimProcessStepper({
               </TabsList>
             </div>
 
-            <TabsContent value={activeNode.id} className="mt-0 outline-none">
+            <TabsContent
+              value={activeNode.id}
+              className="mt-0 min-w-0 outline-none"
+            >
               <div className="flex flex-col gap-4">
                 <ActiveStepPanel
                   node={activeNode}
