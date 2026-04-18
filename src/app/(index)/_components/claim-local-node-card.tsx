@@ -23,9 +23,9 @@ interface ClaimLocalNodeCardProps {
 const localNodeStyles = {
   "information-note": {
     icon: FileText,
-    container: "border-cyan-200/70 bg-cyan-50/80",
-    iconWrap: "border-cyan-200/80 bg-white text-cyan-700",
-    accent: "text-cyan-700",
+    container: "border-cyan-400/25 bg-cyan-500/8",
+    iconWrap: "border-cyan-400/30 bg-background/80 text-cyan-300",
+    accent: "text-cyan-300",
     detail: (currentNode: ClaimDashboardLocalNode) =>
       currentNode.kind === "information-note" ? currentNode.note : "",
     metadata: (currentNode: ClaimDashboardLocalNode) =>
@@ -33,9 +33,9 @@ const localNodeStyles = {
   },
   "additional-attachment": {
     icon: Paperclip,
-    container: "border-indigo-200/70 bg-indigo-50/80",
-    iconWrap: "border-indigo-200/80 bg-white text-indigo-700",
-    accent: "text-indigo-700",
+    container: "border-indigo-400/25 bg-indigo-500/10",
+    iconWrap: "border-indigo-400/30 bg-background/80 text-indigo-300",
+    accent: "text-indigo-300",
     detail: (currentNode: ClaimDashboardLocalNode) =>
       currentNode.kind === "additional-attachment"
         ? currentNode.description

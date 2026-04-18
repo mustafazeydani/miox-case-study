@@ -41,7 +41,7 @@ export function ClaimProcessTimeline({
 
   return (
     <>
-      <Card className="surface-glass rounded-[1.75rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+      <Card className="surface-glass rounded-[1.75rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
         <CardHeader className="gap-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>

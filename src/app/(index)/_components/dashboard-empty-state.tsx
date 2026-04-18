@@ -18,7 +18,7 @@ export function DashboardEmptyState() {
       aria-live="polite"
       className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-10 sm:px-6 lg:px-8 lg:py-14"
     >
-      <Card className="surface-glass relative overflow-hidden rounded-[2rem] border-white/70 shadow-[0_20px_70px_-32px_rgba(21,57,90,0.45)]">
+      <Card className="surface-glass relative overflow-hidden rounded-[2rem] border-border/70 shadow-[0_20px_70px_-32px_rgba(5,10,26,0.62)]">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <CardHeader className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
           <CardTitle className="font-semibold text-primary text-xs uppercase tracking-[0.24em]">
@@ -26,7 +26,7 @@ export function DashboardEmptyState() {
           </CardTitle>
         </CardHeader>
         <CardContent className="px-6 pb-8 sm:px-8 sm:pb-10 lg:px-12 lg:pb-12">
-          <Empty className="rounded-[1.75rem] border border-border/70 border-dashed bg-white/35 p-8">
+          <Empty className="rounded-[1.75rem] border border-border/70 border-dashed bg-background/35 p-8">
             <EmptyHeader>
               <EmptyMedia variant="icon">
                 <Files />

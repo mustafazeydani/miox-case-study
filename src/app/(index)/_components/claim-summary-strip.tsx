@@ -18,7 +18,7 @@ export function ClaimSummaryStrip({ viewModel }: ClaimSummaryStripProps) {
 
   return (
     <div className="grid gap-4 lg:grid-cols-3">
-      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
         <CardHeader className="gap-3">
           <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
             Current Status
@@ -42,7 +42,7 @@ export function ClaimSummaryStrip({ viewModel }: ClaimSummaryStripProps) {
         </CardContent>
       </Card>
 
-      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
         <CardHeader className="gap-3">
           <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
             Estimation
@@ -58,7 +58,7 @@ export function ClaimSummaryStrip({ viewModel }: ClaimSummaryStripProps) {
         </CardContent>
       </Card>
 
-      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)]">
         <CardHeader className="gap-3">
           <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
             Actionability

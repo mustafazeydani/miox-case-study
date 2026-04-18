@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 
 import { AppQueryClientProvider } from "@/components/providers/query-client-provider";
+import { AppThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -30,7 +31,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
+        "dark",
         "h-full",
         "antialiased",
         manrope.variable,
@@ -38,7 +41,15 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <AppQueryClientProvider>{children}</AppQueryClientProvider>
+        <AppThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+          enableSystem={false}
+          forcedTheme="dark"
+        >
+          <AppQueryClientProvider>{children}</AppQueryClientProvider>
+        </AppThemeProvider>
       </body>
     </html>
   );

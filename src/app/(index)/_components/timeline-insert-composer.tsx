@@ -97,7 +97,7 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
     mode === "additional-attachment" && showErrors && !description.trim();
 
   return (
-    <Card className="rounded-[1.35rem] border-border/80 border-dashed bg-white/45 shadow-sm">
+    <Card className="rounded-[1.35rem] border-border/80 border-dashed bg-background/40 shadow-sm">
       {!isOpen ? (
         <>
           <CardHeader className="gap-3">

@@ -39,7 +39,7 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
   );
 
   return (
-    <Card className="surface-glass rounded-[1.75rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)] xl:sticky xl:top-8">
+    <Card className="surface-glass rounded-[1.75rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)] xl:sticky xl:top-8">
       <CardHeader className="gap-3">
         <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
           Action Rail
@@ -59,7 +59,7 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
           <Card
             size="sm"
-            className="rounded-[1.4rem] border border-border/70 bg-white/50"
+            className="rounded-[1.4rem] border border-border/70 bg-background/45"
           >
             <CardHeader className="gap-3">
               <CardDescription className="flex items-center gap-2 text-foreground text-sm">
@@ -74,11 +74,11 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
 
           <Card
             size="sm"
-            className="rounded-[1.4rem] border border-border/70 bg-white/50"
+            className="rounded-[1.4rem] border border-border/70 bg-background/45"
           >
             <CardHeader className="gap-3">
               <CardDescription className="flex items-center gap-2 text-foreground text-sm">
-                <CircleCheckBig className="text-emerald-600" />
+                <CircleCheckBig className="text-emerald-400" />
                 Completed
               </CardDescription>
               <CardTitle className="font-semibold text-3xl leading-none">
@@ -102,7 +102,7 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
                 <Card
                   key={node.id}
                   size="sm"
-                  className="rounded-[1.4rem] border border-border/70 bg-white/50"
+                  className="rounded-[1.4rem] border border-border/70 bg-background/45"
                 >
                   <CardHeader className="gap-2">
                     <CardTitle className="font-medium text-base">
@@ -117,7 +117,7 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
               ))}
             </div>
           ) : (
-            <Empty className="rounded-[1.4rem] border border-border/70 border-dashed bg-white/35 p-6">
+            <Empty className="rounded-[1.4rem] border border-border/70 border-dashed bg-background/35 p-6">
               <EmptyHeader>
                 <EmptyMedia variant="icon">
                   <ShieldCheck />
