@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,12 +7,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getClaimNodeRegistryItem } from "../_utils/registry";
+import {
+  type ClaimNodeRegistryItem,
+  getClaimNodeRegistryItem,
+} from "../_utils/registry";
 import { useClaimDashboardStore } from "../_utils/store";
 import type {
   ClaimDashboardApiNode,
   TimelineInsertSlot,
 } from "../_utils/types";
+import { ClaimAiSheet } from "./claim-ai-sheet";
 import { ClaimLocalNodeCard } from "./claim-local-node-card";
 import { ClaimNodeCard } from "./claim-node-card";
 import { TimelineInsertComposer } from "./timeline-insert-composer";
@@ -26,58 +31,78 @@ export function ClaimProcessTimeline({
   insertSlots,
 }: ClaimProcessTimelineProps) {
   const insertedNodes = useClaimDashboardStore((state) => state.insertedNodes);
+  const [selectedAiNode, setSelectedAiNode] =
+    useState<ClaimDashboardApiNode | null>(null);
+  const [selectedAiDefinition, setSelectedAiDefinition] =
+    useState<ClaimNodeRegistryItem | null>(null);
+  const [isAiSheetOpen, setIsAiSheetOpen] = useState(false);
 
   return (
-    <Card className="surface-glass rounded-[1.75rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
-      <CardHeader className="gap-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
-              Process Timeline
+    <>
+      <Card className="surface-glass rounded-[1.75rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+        <CardHeader className="gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+                Process Timeline
+              </CardDescription>
+              <CardTitle className="mt-3 font-semibold text-3xl leading-none">
+                Each step, rendered by its domain role.
+              </CardTitle>
+            </div>
+            <CardDescription className="max-w-sm text-sm">
+              Every node resolves through a route-local registry, and the local
+              insert flow lets us demonstrate dynamic timeline composition
+              without mutating the mock API.
             </CardDescription>
-            <CardTitle className="mt-3 font-semibold text-3xl leading-none">
-              Each step, rendered by its domain role.
-            </CardTitle>
           </div>
-          <CardDescription className="max-w-sm text-sm">
-            Every node resolves through a route-local registry, and the local
-            insert flow lets us demonstrate dynamic timeline composition without
-            mutating the mock API.
-          </CardDescription>
-        </div>
-      </CardHeader>
+        </CardHeader>
 
-      <CardContent className="flex flex-col gap-6">
-        <Separator />
+        <CardContent className="flex flex-col gap-6">
+          <Separator />
 
-        <ol className="flex flex-col gap-4">
-          {nodes.map((node, index) => {
-            const localNodesAfterStep = insertedNodes.filter(
-              (localNode) => localNode.afterIndex === index,
-            );
-            const slot = insertSlots[index];
+          <ol className="flex flex-col gap-4">
+            {nodes.map((node, index) => {
+              const definition = getClaimNodeRegistryItem(node.kind);
+              const localNodesAfterStep = insertedNodes.filter(
+                (localNode) => localNode.afterIndex === index,
+              );
+              const slot = insertSlots[index];
 
-            return (
-              <li key={node.id} className="list-none">
-                <div className="flex flex-col gap-4">
-                  <ClaimNodeCard
-                    node={node}
-                    index={index}
-                    total={nodes.length}
-                    definition={getClaimNodeRegistryItem(node.kind)}
-                  />
+              return (
+                <li key={node.id} className="list-none">
+                  <div className="flex flex-col gap-4">
+                    <ClaimNodeCard
+                      node={node}
+                      index={index}
+                      total={nodes.length}
+                      definition={definition}
+                      onExplainWithAi={(currentNode, currentDefinition) => {
+                        setSelectedAiNode(currentNode);
+                        setSelectedAiDefinition(currentDefinition);
+                        setIsAiSheetOpen(true);
+                      }}
+                    />
 
-                  {localNodesAfterStep.map((localNode) => (
-                    <ClaimLocalNodeCard key={localNode.id} node={localNode} />
-                  ))}
+                    {localNodesAfterStep.map((localNode) => (
+                      <ClaimLocalNodeCard key={localNode.id} node={localNode} />
+                    ))}
 
-                  {slot ? <TimelineInsertComposer slot={slot} /> : null}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      </CardContent>
-    </Card>
+                    {slot ? <TimelineInsertComposer slot={slot} /> : null}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </CardContent>
+      </Card>
+
+      <ClaimAiSheet
+        node={selectedAiNode}
+        definition={selectedAiDefinition}
+        open={isAiSheetOpen}
+        onOpenChange={setIsAiSheetOpen}
+      />
+    </>
   );
 }

@@ -1,9 +1,11 @@
-import { Clock3 } from "lucide-react";
+import { Clock3, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -11,12 +13,17 @@ import { Separator } from "@/components/ui/separator";
 import type { ClaimNodeRegistryItem } from "../_utils/registry";
 import type { ClaimDashboardApiNode } from "../_utils/types";
 import { ClaimStatusPill } from "./claim-status-pill";
+import { DeductionDocumentAnalyzer } from "./deduction-document-analyzer";
 
 interface ClaimNodeCardProps {
   node: ClaimDashboardApiNode;
   index: number;
   total: number;
   definition: ClaimNodeRegistryItem;
+  onExplainWithAi: (
+    node: ClaimDashboardApiNode,
+    definition: ClaimNodeRegistryItem,
+  ) => void;
 }
 
 export function ClaimNodeCard({
@@ -24,6 +31,7 @@ export function ClaimNodeCard({
   index,
   total,
   definition,
+  onExplainWithAi,
 }: ClaimNodeCardProps) {
   const Icon = definition.icon;
   const spotlight = node.fields.find(
@@ -139,7 +147,23 @@ export function ClaimNodeCard({
               </Card>
             ))}
           </dl>
+
+          {definition.supportsDocumentAnalysis &&
+          "actionRequired" in node.raw ? (
+            <DeductionDocumentAnalyzer requestLabel={node.raw.actionRequired} />
+          ) : null}
         </CardContent>
+
+        <CardFooter className="pt-0">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => onExplainWithAi(node, definition)}
+          >
+            <Sparkles data-icon="inline-start" />
+            {definition.explainActionLabel}
+          </Button>
+        </CardFooter>
       </Card>
     </div>
   );
