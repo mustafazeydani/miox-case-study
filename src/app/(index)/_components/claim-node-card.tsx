@@ -132,9 +132,9 @@ export function ClaimNodeCard({
               <Card
                 key={field.key}
                 size="sm"
-                className="rounded-2xl border border-border/60 bg-background/70"
+                className="gap-0 rounded-2xl border border-border/60 bg-background/70"
               >
-                <CardHeader className="gap-2">
+                <CardHeader className="gap-2 pb-2">
                   <CardDescription className="font-medium text-xs uppercase tracking-[0.18em]">
                     {field.label}
                   </CardDescription>
@@ -154,7 +154,7 @@ export function ClaimNodeCard({
           ) : null}
         </CardContent>
 
-        <CardFooter className="pt-0">
+        <CardFooter className="pt-5">
           <Button
             type="button"
             variant="outline"
