@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   Card,
@@ -43,10 +45,16 @@ export function ClaimProcessTimeline({
         <CardHeader className="gap-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+              <CardDescription
+                id="claim-timeline-label"
+                className="font-semibold text-xs uppercase tracking-[0.24em]"
+              >
                 Process Timeline
               </CardDescription>
-              <CardTitle className="mt-3 font-semibold text-3xl leading-none">
+              <CardTitle
+                id="claim-timeline-heading"
+                className="mt-3 font-semibold text-3xl leading-none"
+              >
                 Each step, rendered by its domain role.
               </CardTitle>
             </div>
@@ -61,7 +69,11 @@ export function ClaimProcessTimeline({
         <CardContent className="flex flex-col gap-6">
           <Separator />
 
-          <ol className="flex flex-col gap-4">
+          <ol
+            aria-describedby="claim-timeline-label"
+            aria-labelledby="claim-timeline-heading"
+            className="flex flex-col gap-4"
+          >
             {nodes.map((node, index) => {
               const definition = getClaimNodeRegistryItem(node.kind);
               const localNodesAfterStep = insertedNodes.filter(

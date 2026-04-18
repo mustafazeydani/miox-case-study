@@ -4,7 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function DashboardErrorState() {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section
+      aria-live="assertive"
+      className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-10 sm:px-6 lg:px-8 lg:py-14"
+    >
       <Card className="surface-glass relative overflow-hidden rounded-[2rem] border-destructive/20 shadow-[0_20px_70px_-32px_rgba(21,57,90,0.45)]">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-destructive/40 to-transparent" />
         <CardHeader className="gap-4 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">

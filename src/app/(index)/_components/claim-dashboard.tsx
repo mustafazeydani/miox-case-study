@@ -20,7 +20,10 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
   const { overview } = viewModel;
 
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-10 pb-28 sm:px-6 lg:px-8 lg:py-14 lg:pb-24">
+    <section
+      aria-labelledby="claim-dashboard-heading"
+      className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-10 pb-32 sm:px-6 sm:pb-36 lg:px-8 lg:py-14 lg:pb-24"
+    >
       <div className="surface-glass relative overflow-hidden rounded-[2rem] border border-white/70 px-6 py-8 shadow-[0_20px_70px_-32px_rgba(21,57,90,0.45)] ring-1 ring-black/4 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-end">
@@ -32,7 +35,10 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
               Live Claim Orchestration
             </Badge>
             <div className="space-y-4">
-              <h1 className="max-w-3xl text-balance font-heading font-semibold text-4xl text-foreground leading-none tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+              <h1
+                id="claim-dashboard-heading"
+                className="max-w-3xl text-balance font-heading font-semibold text-4xl text-foreground leading-none tracking-[-0.03em] sm:text-5xl lg:text-6xl"
+              >
                 {overview.title}
               </h1>
               <p className="max-w-2xl text-base text-muted-foreground leading-7 sm:text-lg">

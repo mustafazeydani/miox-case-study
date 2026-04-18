@@ -5,7 +5,11 @@ export function DashboardLoadingState() {
   const loadingCardKeys = ["status", "eta", "actionability"] as const;
 
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-10 pb-28 sm:px-6 lg:px-8 lg:py-14 lg:pb-24">
+    <section
+      aria-busy="true"
+      aria-live="polite"
+      className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-10 pb-28 sm:px-6 lg:px-8 lg:py-14 lg:pb-24"
+    >
       <Card className="surface-glass rounded-[2rem] border-white/70 shadow-[0_20px_70px_-32px_rgba(21,57,90,0.45)]">
         <CardHeader className="gap-4 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
           <Skeleton className="h-4 w-40 rounded-full" />
