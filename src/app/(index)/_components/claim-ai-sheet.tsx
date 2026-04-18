@@ -22,7 +22,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
-import { simulateExplainResult } from "../_utils/ai";
+import { getMockExplainResult } from "../_utils/ai";
 import type { ClaimNodeRegistryItem } from "../_utils/registry";
 import type { ClaimDashboardApiNode, ExplainResult } from "../_utils/types";
 import { ClaimStatusPill } from "./claim-status-pill";
@@ -55,7 +55,7 @@ export function ClaimAiSheet({
 
       setIsLoading(true);
       setResult(null);
-      const nextResult = await simulateExplainResult(node, definition);
+      const nextResult = await getMockExplainResult(node.raw);
 
       if (isCancelled) {
         return;
@@ -81,7 +81,7 @@ export function ClaimAiSheet({
 
     setIsLoading(true);
     setResult(null);
-    const nextResult = await simulateExplainResult(node, definition);
+    const nextResult = await getMockExplainResult(node.raw);
     startTransition(() => {
       setResult(nextResult);
       setIsLoading(false);
@@ -92,7 +92,7 @@ export function ClaimAiSheet({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="surface-glass flex w-full max-w-[38rem] flex-col gap-0 overflow-y-auto border-white/70"
+        className="surface-glass flex w-full max-w-[38rem] flex-col gap-0 overflow-y-auto border-border/70"
       >
         <SheetHeader className="gap-3 border-border/70 border-b px-5 py-5 sm:px-6">
           <div className="flex flex-wrap items-center gap-2">
@@ -109,7 +109,7 @@ export function ClaimAiSheet({
           </SheetTitle>
           <SheetDescription>
             {definition?.description ??
-              "Simulated AI guidance for the selected claim step."}
+              "Mock AI guidance for the selected claim step."}
           </SheetDescription>
         </SheetHeader>
 
@@ -117,7 +117,7 @@ export function ClaimAiSheet({
           {node ? (
             <Card
               size="sm"
-              className="rounded-[1.25rem] border-border/70 bg-white/45"
+              className="rounded-[1.25rem] border-border/70 bg-background/45"
             >
               <CardHeader className="gap-2">
                 <CardDescription>Current payload summary</CardDescription>
@@ -130,14 +130,14 @@ export function ClaimAiSheet({
 
           {isLoading ? (
             <>
-              <Card className="rounded-[1.25rem] border-border/70 bg-white/45">
+              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
                 <CardContent className="flex flex-col gap-3 px-5 py-5">
                   <Skeleton className="h-4 w-32" />
                   <Skeleton className="h-8 w-2/3" />
                   <Skeleton className="h-24 w-full" />
                 </CardContent>
               </Card>
-              <Card className="rounded-[1.25rem] border-border/70 bg-white/45">
+              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
                 <CardContent className="flex flex-col gap-3 px-5 py-5">
                   <Skeleton className="h-4 w-24" />
                   <Skeleton className="h-12 w-full" />
@@ -147,7 +147,7 @@ export function ClaimAiSheet({
             </>
           ) : result ? (
             <>
-              <Card className="rounded-[1.25rem] border-border/70 bg-white/45">
+              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
                 <CardHeader className="gap-3">
                   <CardDescription>AI interpretation</CardDescription>
                   <CardTitle className="font-semibold text-xl leading-tight">
@@ -161,7 +161,7 @@ export function ClaimAiSheet({
                 </CardContent>
               </Card>
 
-              <Card className="rounded-[1.25rem] border-border/70 bg-white/45">
+              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
                 <CardHeader className="gap-3">
                   <CardDescription>Key highlights</CardDescription>
                 </CardHeader>
@@ -184,7 +184,7 @@ export function ClaimAiSheet({
 
               <Card
                 size="sm"
-                className="rounded-[1.25rem] border-border/70 bg-white/45"
+                className="rounded-[1.25rem] border-border/70 bg-background/45"
               >
                 <CardHeader className="gap-2">
                   <CardDescription>Confidence label</CardDescription>

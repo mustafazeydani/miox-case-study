@@ -38,7 +38,7 @@ function getStepSummary(detail: ProcessDetail) {
   }
 }
 
-function mapProcessDetailToApiNode(
+export function mapProcessDetailToApiNode(
   detail: ProcessDetail,
   order: number,
 ): ClaimDashboardApiNode {

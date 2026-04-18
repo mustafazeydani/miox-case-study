@@ -5,9 +5,8 @@
  * Generated from Zod schemas for the mock claim route used in the AI-powered claim orchestrator case study.
  * OpenAPI spec version: 1.0.0
  */
-import type { ProcessDetailOutput } from "./processDetailOutput";
 
 /**
- * Ordered process nodes returned by the mock API.
+ * Name of the uploaded file being analyzed by the mock AI route.
  */
-export type ProcessDetailList = ProcessDetailOutput[];
+export type DocumentAnalysisFileName = string;

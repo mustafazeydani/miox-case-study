@@ -27,7 +27,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { simulateDocumentAnalysis } from "../_utils/ai";
+import { getMockDocumentAnalysis } from "../_utils/ai";
 import type { DocumentAnalysisResult } from "../_utils/types";
 
 interface DeductionDocumentAnalyzerProps {
@@ -81,7 +81,7 @@ export function DeductionDocumentAnalyzer({
 
     setIsAnalyzing(true);
     setAnalysisResult(null);
-    const result = await simulateDocumentAnalysis(selectedFile);
+    const result = await getMockDocumentAnalysis(selectedFile, requestLabel);
     startTransition(() => {
       setAnalysisResult(result);
       setIsAnalyzing(false);
@@ -96,7 +96,7 @@ export function DeductionDocumentAnalyzer({
       <CardHeader className="gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline" className="rounded-full">
-            Simulated document AI
+            Mock document AI
           </Badge>
           <CardDescription>{requestLabel}</CardDescription>
         </div>
@@ -104,9 +104,9 @@ export function DeductionDocumentAnalyzer({
           Occupational certificate analyzer
         </CardTitle>
         <CardDescription>
-          This local analyzer checks a selected file name and extension to mimic
-          how an assistive AI tool might pre-screen the upload before a claims
-          handler reviews it.
+          This mock API checks browser file metadata to mimic how an assistive
+          AI tool might pre-screen the upload before a claims handler reviews
+          it.
         </CardDescription>
       </CardHeader>
 
@@ -129,7 +129,7 @@ export function DeductionDocumentAnalyzer({
                 }}
               />
               <FieldDescription>
-                Accepted for the simulation: PDF, PNG, JPG, JPEG, WEBP.
+                Accepted by the mock API: PDF, PNG, JPG, JPEG, WEBP.
               </FieldDescription>
             </Field>
           </FieldGroup>
@@ -155,7 +155,7 @@ export function DeductionDocumentAnalyzer({
             ) : (
               <FileSearch data-icon="inline-start" />
             )}
-            {isAnalyzing ? "Analyzing..." : "Run simulated analysis"}
+            {isAnalyzing ? "Analyzing..." : "Run mock analysis"}
           </Button>
           <Button
             type="button"

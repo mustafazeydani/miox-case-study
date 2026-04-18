@@ -5,9 +5,11 @@
  * Generated from Zod schemas for the mock claim route used in the AI-powered claim orchestrator case study.
  * OpenAPI spec version: 1.0.0
  */
-import type { ProcessDetailOutput } from "./processDetailOutput";
+import type { MockApiErrorMessage } from "./mockApiErrorMessage";
 
 /**
- * Ordered process nodes returned by the mock API.
+ * Generic validation error returned by the mock AI routes.
  */
-export type ProcessDetailList = ProcessDetailOutput[];
+export interface MockApiError {
+  message: MockApiErrorMessage;
+}

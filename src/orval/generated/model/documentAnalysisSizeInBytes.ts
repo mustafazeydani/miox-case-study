@@ -5,9 +5,10 @@
  * Generated from Zod schemas for the mock claim route used in the AI-powered claim orchestrator case study.
  * OpenAPI spec version: 1.0.0
  */
-import type { ProcessDetailOutput } from "./processDetailOutput";
 
 /**
- * Ordered process nodes returned by the mock API.
+ * Optional browser-reported size of the uploaded file.
+ * @minimum 0
+ * @maximum 9007199254740991
  */
-export type ProcessDetailList = ProcessDetailOutput[];
+export type DocumentAnalysisSizeInBytes = number;
