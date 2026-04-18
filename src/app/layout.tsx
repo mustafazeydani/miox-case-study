@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 
 import { AppQueryClientProvider } from "@/components/providers/query-client-provider";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +30,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", "font-sans", inter.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        manrope.variable,
+        fraunces.variable,
+      )}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col bg-background text-foreground">
         <AppQueryClientProvider>{children}</AppQueryClientProvider>
       </body>
     </html>
