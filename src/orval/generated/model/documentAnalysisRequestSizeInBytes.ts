@@ -5,6 +5,6 @@
  * Generated from Zod schemas for the mock claim route used in the AI-powered claim orchestrator case study.
  * OpenAPI spec version: 1.0.0
  */
-import type { RequestedDocument } from "./requestedDocument";
+import type { DocumentAnalysisSizeInBytes } from "./documentAnalysisSizeInBytes";
 
-export type _Schema2 = RequestedDocument;
+export type DocumentAnalysisRequestSizeInBytes = DocumentAnalysisSizeInBytes;

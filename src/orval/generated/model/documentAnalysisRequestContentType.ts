@@ -7,4 +7,4 @@
  */
 import type { DocumentAnalysisContentType } from "./documentAnalysisContentType";
 
-export type _Schema0 = DocumentAnalysisContentType;
+export type DocumentAnalysisRequestContentType = DocumentAnalysisContentType;

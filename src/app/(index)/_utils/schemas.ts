@@ -144,6 +144,19 @@ function createNamedLiteralSchema<const Value extends string>(
   });
 }
 
+function createNamedOptionalSchema<TSchema extends z.ZodTypeAny>(
+  schema: TSchema,
+  id: string,
+  description: string,
+  example: z.infer<TSchema>,
+) {
+  return schema.optional().meta({
+    id,
+    description,
+    example,
+  });
+}
+
 const claimProcessTitleSchema = createNamedLiteralSchema(
   "ClaimProcessTitle",
   "Claim Process",
@@ -408,17 +421,39 @@ const documentAnalysisContentTypeSchema = createNamedStringSchema(
   documentAnalysisRequestFixture.contentType,
 );
 
+const documentAnalysisRequestContentTypeSchema = createNamedOptionalSchema(
+  documentAnalysisContentTypeSchema,
+  "DocumentAnalysisRequestContentType",
+  "Optional MIME type captured from the browser file input.",
+  documentAnalysisRequestFixture.contentType,
+);
+
 const documentAnalysisSizeInBytesSchema = z.number().int().nonnegative().meta({
   id: "DocumentAnalysisSizeInBytes",
   description: "Optional browser-reported size of the uploaded file.",
   example: documentAnalysisRequestFixture.sizeInBytes,
 });
 
+const documentAnalysisRequestSizeInBytesSchema = createNamedOptionalSchema(
+  documentAnalysisSizeInBytesSchema,
+  "DocumentAnalysisRequestSizeInBytes",
+  "Optional browser-reported size of the uploaded file.",
+  documentAnalysisRequestFixture.sizeInBytes,
+);
+
 const requestedDocumentSchema = createNamedStringSchema(
   "RequestedDocument",
   "The specific claimant document the mock AI route is evaluating.",
   documentAnalysisRequestFixture.requestedDocument,
 );
+
+const documentAnalysisRequestRequestedDocumentSchema =
+  createNamedOptionalSchema(
+    requestedDocumentSchema,
+    "DocumentAnalysisRequestRequestedDocument",
+    "The specific claimant document this upload is being checked against.",
+    documentAnalysisRequestFixture.requestedDocument,
+  );
 
 const explainHeadingSchema = createNamedStringSchema(
   "ExplainHeading",
@@ -678,9 +713,9 @@ export const explainResultSchema = z
 export const documentAnalysisRequestSchema = z
   .object({
     fileName: documentAnalysisFileNameSchema,
-    contentType: documentAnalysisContentTypeSchema.optional(),
-    sizeInBytes: documentAnalysisSizeInBytesSchema.optional(),
-    requestedDocument: requestedDocumentSchema.optional(),
+    contentType: documentAnalysisRequestContentTypeSchema,
+    sizeInBytes: documentAnalysisRequestSizeInBytesSchema,
+    requestedDocument: documentAnalysisRequestRequestedDocumentSchema,
   })
   .meta({
     id: "DocumentAnalysisRequest",

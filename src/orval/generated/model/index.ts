@@ -6,9 +6,6 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export * from "./_schema0";
-export * from "./_schema1";
-export * from "./_schema2";
 export * from "./appraisalContact";
 export * from "./appraisalExpertAssignmentDate";
 export * from "./appraisalExpertInfo";
@@ -56,6 +53,9 @@ export * from "./documentAnalysisContentType";
 export * from "./documentAnalysisFileName";
 export * from "./documentAnalysisRejectedState";
 export * from "./documentAnalysisRequest";
+export * from "./documentAnalysisRequestContentType";
+export * from "./documentAnalysisRequestRequestedDocument";
+export * from "./documentAnalysisRequestSizeInBytes";
 export * from "./documentAnalysisResult";
 export * from "./documentAnalysisSizeInBytes";
 export * from "./documentAnalysisState";
