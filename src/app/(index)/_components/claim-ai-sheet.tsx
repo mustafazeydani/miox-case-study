@@ -21,11 +21,11 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
 import type { ExplainResult } from "@/orval/generated/model";
 import { postMockAiExplain } from "@/orval/generated/react-query/mock-ai";
 import type { ClaimNodeRegistryItem } from "../_utils/registry";
 import type { ClaimDashboardApiNode } from "../_utils/types";
+import { ClaimAiSheetSkeletonBody } from "./claim-ai-sheet-skeleton";
 import { ClaimStatusPill } from "./claim-status-pill";
 
 interface ClaimAiSheetProps {
@@ -134,22 +134,7 @@ export function ClaimAiSheet({
           ) : null}
 
           {isLoading ? (
-            <>
-              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
-                <CardContent className="flex flex-col gap-3 px-5 py-5">
-                  <Skeleton className="h-4 w-32" />
-                  <Skeleton className="h-8 w-2/3" />
-                  <Skeleton className="h-24 w-full" />
-                </CardContent>
-              </Card>
-              <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
-                <CardContent className="flex flex-col gap-3 px-5 py-5">
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-12 w-full" />
-                  <Skeleton className="h-12 w-full" />
-                </CardContent>
-              </Card>
-            </>
+            <ClaimAiSheetSkeletonBody />
           ) : result ? (
             <>
               <Card className="rounded-[1.25rem] border-border/70 bg-background/45">

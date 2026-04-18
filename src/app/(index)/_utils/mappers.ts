@@ -58,18 +58,28 @@ export function mapProcessDetailToApiNode(
   };
 }
 
+function getInitialStepIndex(apiNodes: ClaimDashboardApiNode[]) {
+  const activeIndex = apiNodes.findIndex(
+    (node) => node.status === "In Progress" || node.status === "Pending",
+  );
+
+  if (activeIndex !== -1) {
+    return activeIndex;
+  }
+
+  return Math.max(apiNodes.length - 1, 0);
+}
+
 function createClaimDashboardOverview(
   process: ClaimProcess,
   apiNodes: ClaimDashboardApiNode[],
+  initialStepIndex: number,
 ): ClaimDashboardOverview {
   const actionableStep = getActionableStep(process);
   const completedCount = getCompletedStepCount(process);
   const totalCount = process.processDetails.length;
   const completionRatio = completedCount / totalCount;
-  const activeNode =
-    apiNodes.find(
-      (node) => node.status === "In Progress" || node.status === "Pending",
-    ) ?? apiNodes.at(-1);
+  const activeNode = apiNodes[initialStepIndex];
 
   return {
     title: process.title,
@@ -92,12 +102,18 @@ export function createClaimDashboardViewModel(
   process: ClaimProcess,
 ): ClaimDashboardViewModel {
   const apiNodes = process.processDetails.map(mapProcessDetailToApiNode);
-  const overview = createClaimDashboardOverview(process, apiNodes);
+  const initialStepIndex = getInitialStepIndex(apiNodes);
+  const overview = createClaimDashboardOverview(
+    process,
+    apiNodes,
+    initialStepIndex,
+  );
 
   return {
     process,
     overview,
     apiNodes,
     insertSlots: createTimelineInsertSlots(apiNodes.length),
+    initialStepIndex,
   };
 }

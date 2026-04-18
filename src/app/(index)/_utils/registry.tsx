@@ -15,6 +15,7 @@ import type { ClaimDashboardApiNodeKind } from "./types";
 export interface ClaimNodeRegistryItem {
   eyebrow: string;
   description: string;
+  stepperLabel: string;
   explainActionLabel: string;
   explainPanelTitle: string;
   icon: LucideIcon;
@@ -28,6 +29,7 @@ export const claimNodeRegistry = {
   "towing-service": {
     eyebrow: "Mobility Service",
     description: "Vehicle pickup, transport timing, and handoff details.",
+    stepperLabel: "Mobility",
     explainActionLabel: "Explain towing step",
     explainPanelTitle: "AI mobility summary",
     icon: Truck,
@@ -38,6 +40,7 @@ export const claimNodeRegistry = {
   "claim-notification": {
     eyebrow: "Claim Intake",
     description: "How the case was reported and who initiated the process.",
+    stepperLabel: "Intake",
     explainActionLabel: "Explain intake step",
     explainPanelTitle: "AI intake summary",
     icon: Bell,
@@ -48,6 +51,7 @@ export const claimNodeRegistry = {
   appraisal: {
     eyebrow: "Expert Review",
     description: "Appraisal assignment details and report completion status.",
+    stepperLabel: "Appraisal",
     explainActionLabel: "Explain appraisal step",
     explainPanelTitle: "AI appraisal summary",
     icon: BadgeCheck,
@@ -58,6 +62,7 @@ export const claimNodeRegistry = {
   "substitute-rental-vehicle": {
     eyebrow: "Courtesy Mobility",
     description: "Replacement vehicle support arranged while repairs continue.",
+    stepperLabel: "Courtesy Car",
     explainActionLabel: "Explain mobility support",
     explainPanelTitle: "AI courtesy vehicle summary",
     icon: CarFront,
@@ -69,6 +74,7 @@ export const claimNodeRegistry = {
     eyebrow: "Review Desk",
     description:
       "The claim file is being evaluated against the full case data.",
+    stepperLabel: "Review",
     explainActionLabel: "Explain review step",
     explainPanelTitle: "AI review summary",
     icon: FolderOpen,
@@ -80,6 +86,7 @@ export const claimNodeRegistry = {
     eyebrow: "Action Required",
     description:
       "Outstanding deductions and the document request blocking progress.",
+    stepperLabel: "Deduction",
     explainActionLabel: "Explain deduction blocker",
     explainPanelTitle: "AI deduction summary",
     icon: ShieldAlert,
@@ -91,6 +98,7 @@ export const claimNodeRegistry = {
   "payment-information": {
     eyebrow: "Settlement",
     description: "Payout destination and reimbursement summary before release.",
+    stepperLabel: "Payment",
     explainActionLabel: "Explain payment step",
     explainPanelTitle: "AI payment summary",
     icon: Wallet,
@@ -102,6 +110,7 @@ export const claimNodeRegistry = {
     eyebrow: "Closure",
     description:
       "Final closeout details once all prior obligations are resolved.",
+    stepperLabel: "Closure",
     explainActionLabel: "Explain closure step",
     explainPanelTitle: "AI closure summary",
     icon: Archive,

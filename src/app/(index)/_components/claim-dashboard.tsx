@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import type { ClaimDashboardViewModel } from "../_utils/types";
 import { ClaimActionRail } from "./claim-action-rail";
-import { ClaimProcessTimeline } from "./claim-process-timeline";
+import { ClaimProcessStepper } from "./claim-process-stepper";
 import { ClaimSummaryStrip } from "./claim-summary-strip";
 import { FloatingDocsButton } from "./floating-docs-button";
 import { ThemeToggleButton } from "./theme-toggle-button";
@@ -93,9 +93,10 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_22rem] xl:items-start">
         <div className="space-y-6">
           <ClaimSummaryStrip viewModel={viewModel} />
-          <ClaimProcessTimeline
+          <ClaimProcessStepper
             nodes={viewModel.apiNodes}
             insertSlots={viewModel.insertSlots}
+            initialStepIndex={viewModel.initialStepIndex}
           />
         </div>
         <ClaimActionRail overview={overview} nodes={viewModel.apiNodes} />

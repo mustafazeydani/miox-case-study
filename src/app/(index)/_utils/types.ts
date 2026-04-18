@@ -71,6 +71,7 @@ export interface ClaimDashboardViewModel {
   overview: ClaimDashboardOverview;
   apiNodes: ClaimDashboardApiNode[];
   insertSlots: TimelineInsertSlot[];
+  initialStepIndex: number;
 }
 
 export type ExplainResult = OrvalExplainResult;
