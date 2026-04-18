@@ -1,8 +1,33 @@
-"use client";
-
 import { create } from "zustand";
 
-import type { AdditionalAttachmentNode, InformationNoteNode } from "./types";
+export type ClaimDashboardLocalNodeKind =
+  | "information-note"
+  | "additional-attachment";
+
+export interface InformationNoteNode {
+  id: string;
+  source: "local";
+  afterIndex: number;
+  kind: "information-note";
+  title: string;
+  note: string;
+  createdAtLabel: string;
+}
+
+export interface AdditionalAttachmentNode {
+  id: string;
+  source: "local";
+  afterIndex: number;
+  kind: "additional-attachment";
+  title: string;
+  fileName: string;
+  description: string;
+  createdAtLabel: string;
+}
+
+export type ClaimDashboardLocalNode =
+  | InformationNoteNode
+  | AdditionalAttachmentNode;
 
 const timestampFormatter = new Intl.DateTimeFormat("en", {
   month: "short",
@@ -29,7 +54,7 @@ interface AddAttachmentInput {
 }
 
 interface ClaimDashboardStoreState {
-  insertedNodes: Array<InformationNoteNode | AdditionalAttachmentNode>;
+  insertedNodes: ClaimDashboardLocalNode[];
   addInformationNote: (input: AddInformationNoteInput) => void;
   addAdditionalAttachment: (input: AddAttachmentInput) => void;
   removeInsertedNode: (id: string) => void;

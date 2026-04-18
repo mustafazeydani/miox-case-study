@@ -9,11 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useClaimDashboardStore } from "@/lib/stores/claim-dashboard-store";
 import {
   type ClaimNodeRegistryItem,
   getClaimNodeRegistryItem,
 } from "../_utils/registry";
-import { useClaimDashboardStore } from "../_utils/store";
 import type {
   ClaimDashboardApiNode,
   TimelineInsertSlot,

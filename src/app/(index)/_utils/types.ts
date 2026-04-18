@@ -1,4 +1,8 @@
 import type {
+  ClaimDashboardLocalNode,
+  ClaimDashboardLocalNodeKind,
+} from "@/lib/stores/claim-dashboard-store";
+import type {
   DocumentAnalysisResult as OrvalDocumentAnalysisResult,
   ExplainResult as OrvalExplainResult,
 } from "@/orval/generated/model";
@@ -15,10 +19,6 @@ export type ClaimDashboardApiNodeKind =
   | "deduction-reason"
   | "payment-information"
   | "closed";
-
-export type ClaimDashboardLocalNodeKind =
-  | "information-note"
-  | "additional-attachment";
 
 export type ClaimDashboardNodeKind =
   | ClaimDashboardApiNodeKind
@@ -57,31 +57,6 @@ export interface ClaimDashboardApiNode {
   raw: ProcessDetail;
 }
 
-export interface InformationNoteNode {
-  id: string;
-  source: "local";
-  afterIndex: number;
-  kind: "information-note";
-  title: string;
-  note: string;
-  createdAtLabel: string;
-}
-
-export interface AdditionalAttachmentNode {
-  id: string;
-  source: "local";
-  afterIndex: number;
-  kind: "additional-attachment";
-  title: string;
-  fileName: string;
-  description: string;
-  createdAtLabel: string;
-}
-
-export type ClaimDashboardLocalNode =
-  | InformationNoteNode
-  | AdditionalAttachmentNode;
-
 export type ClaimDashboardNode =
   | ClaimDashboardApiNode
   | ClaimDashboardLocalNode;
@@ -100,3 +75,9 @@ export interface ClaimDashboardViewModel {
 
 export type ExplainResult = OrvalExplainResult;
 export type DocumentAnalysisResult = OrvalDocumentAnalysisResult;
+export type {
+  AdditionalAttachmentNode,
+  ClaimDashboardLocalNode,
+  ClaimDashboardLocalNodeKind,
+  InformationNoteNode,
+} from "@/lib/stores/claim-dashboard-store";

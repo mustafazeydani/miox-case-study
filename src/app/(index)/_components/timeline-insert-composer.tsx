@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useClaimDashboardStore } from "../_utils/store";
+import { useClaimDashboardStore } from "@/lib/stores/claim-dashboard-store";
 import type { TimelineInsertSlot } from "../_utils/types";
 
 interface TimelineInsertComposerProps {

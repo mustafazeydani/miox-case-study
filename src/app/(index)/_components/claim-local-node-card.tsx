@@ -12,9 +12,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  type ClaimDashboardLocalNode,
+  useClaimDashboardStore,
+} from "@/lib/stores/claim-dashboard-store";
 import { cn } from "@/lib/utils";
-import { useClaimDashboardStore } from "../_utils/store";
-import type { ClaimDashboardLocalNode } from "../_utils/types";
 
 interface ClaimLocalNodeCardProps {
   node: ClaimDashboardLocalNode;
