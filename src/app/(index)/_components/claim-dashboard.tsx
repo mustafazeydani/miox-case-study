@@ -38,7 +38,7 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
                 variant="outline"
                 className="w-fit rounded-full border-primary/20 bg-primary/8 px-3 py-1 font-semibold text-[0.7rem] text-primary uppercase tracking-[0.24em]"
               >
-                Live Claim Orchestration
+                Live Claim Tracking
               </Badge>
               <div className="space-y-4">
                 <h1

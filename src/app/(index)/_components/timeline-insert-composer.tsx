@@ -102,14 +102,13 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
         <>
           <CardHeader className="gap-3">
             <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
-              Node Management
+              Timeline Updates
             </CardDescription>
             <CardTitle className="font-semibold text-base">
               {slot.label}
             </CardTitle>
             <CardDescription>
-              Insert a lightweight note or attachment checkpoint without
-              mutating the mock backend payload.
+              Add a note or attachment to keep the timeline up to date.
             </CardDescription>
           </CardHeader>
           <CardFooter className="pt-0">
@@ -127,7 +126,7 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
         <form onSubmit={handleSubmit}>
           <CardHeader className="gap-3">
             <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
-              Compose inserted node
+              Add Timeline Update
             </CardDescription>
             <CardTitle className="font-semibold text-base">
               {slot.label}
@@ -144,8 +143,8 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
                 Node type and details
               </FieldLegend>
               <FieldDescription>
-                This stays local to the dashboard and helps demonstrate the
-                dynamic timeline requirement from the case study.
+                This update stays with the claim so the latest details are easy
+                to follow.
               </FieldDescription>
               <FieldGroup>
                 <Field>

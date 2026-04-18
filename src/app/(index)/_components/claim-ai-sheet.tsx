@@ -109,7 +109,7 @@ export function ClaimAiSheet({
           </SheetTitle>
           <SheetDescription>
             {definition?.description ??
-              "Mock AI guidance for the selected claim step."}
+              "See a plain-language summary of this claim step."}
           </SheetDescription>
         </SheetHeader>
 
@@ -120,7 +120,7 @@ export function ClaimAiSheet({
               className="rounded-[1.25rem] border-border/70 bg-background/45"
             >
               <CardHeader className="gap-2">
-                <CardDescription>Current payload summary</CardDescription>
+                <CardDescription>Current step summary</CardDescription>
                 <CardTitle className="font-semibold text-base">
                   {node.summary}
                 </CardTitle>

@@ -96,17 +96,16 @@ export function DeductionDocumentAnalyzer({
       <CardHeader className="gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline" className="rounded-full">
-            Mock document AI
+            Document review
           </Badge>
           <CardDescription>{requestLabel}</CardDescription>
         </div>
         <CardTitle className="font-semibold text-xl leading-tight">
-          Occupational certificate analyzer
+          Occupational certificate review
         </CardTitle>
         <CardDescription>
-          This mock API checks browser file metadata to mimic how an assistive
-          AI tool might pre-screen the upload before a claims handler reviews
-          it.
+          Upload the requested file to confirm it matches this step before a
+          claims handler reviews it.
         </CardDescription>
       </CardHeader>
 
@@ -129,7 +128,7 @@ export function DeductionDocumentAnalyzer({
                 }}
               />
               <FieldDescription>
-                Accepted by the mock API: PDF, PNG, JPG, JPEG, WEBP.
+                Accepted file types: PDF, PNG, JPG, JPEG, WEBP.
               </FieldDescription>
             </Field>
           </FieldGroup>
@@ -155,7 +154,7 @@ export function DeductionDocumentAnalyzer({
             ) : (
               <FileSearch data-icon="inline-start" />
             )}
-            {isAnalyzing ? "Analyzing..." : "Run mock analysis"}
+            {isAnalyzing ? "Analyzing..." : "Check file"}
           </Button>
           <Button
             type="button"

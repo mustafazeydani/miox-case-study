@@ -22,7 +22,7 @@ export function DashboardEmptyState() {
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <CardHeader className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
           <CardTitle className="font-semibold text-primary text-xs uppercase tracking-[0.24em]">
-            No Process Steps
+            No Claim Steps Yet
           </CardTitle>
         </CardHeader>
         <CardContent className="px-6 pb-8 sm:px-8 sm:pb-10 lg:px-12 lg:pb-12">
@@ -32,19 +32,18 @@ export function DashboardEmptyState() {
                 <Files />
               </EmptyMedia>
               <EmptyTitle className="max-w-2xl text-balance text-4xl leading-none sm:text-5xl">
-                The claim exists, but there are no process details to display
-                yet.
+                The claim is ready, but there are no step details to show yet.
               </EmptyTitle>
               <EmptyDescription className="max-w-xl text-base leading-7">
-                As soon as the orchestration feed publishes steps, this
-                dashboard will populate them automatically.
+                As soon as step details are available, this dashboard will
+                populate automatically.
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Button asChild variant="outline">
                 <Link href={floatingDocsHref}>
                   <BookOpenText data-icon="inline-start" />
-                  View API reference
+                  Learn more
                 </Link>
               </Button>
             </EmptyContent>

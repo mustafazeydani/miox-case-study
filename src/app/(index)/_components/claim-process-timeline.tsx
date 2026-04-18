@@ -55,13 +55,12 @@ export function ClaimProcessTimeline({
                 id="claim-timeline-heading"
                 className="mt-3 font-semibold text-3xl leading-none"
               >
-                Each step, rendered by its domain role.
+                Follow each claim step as it happens.
               </CardTitle>
             </div>
             <CardDescription className="max-w-sm text-sm">
-              Every node resolves through a route-local registry, and the local
-              insert flow lets us demonstrate dynamic timeline composition
-              without mutating the mock API.
+              See the current stage, recent updates, and any added notes or
+              attachments in one place.
             </CardDescription>
           </div>
         </CardHeader>
