@@ -115,28 +115,32 @@ export function ClaimProcessStepper({
               </CardDescription>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <CardDescription className="mr-2 text-sm">
+            <div className="flex shrink-0 flex-col items-start gap-3 sm:items-end">
+              <CardDescription className="text-sm">
                 Step {activeStepIndex + 1} of {nodes.length}
               </CardDescription>
-              <Button
-                type="button"
-                variant="outline"
-                disabled={activeStepIndex === 0}
-                onClick={() => handleStepChange(activeStepIndex - 1)}
-              >
-                <ChevronLeft data-icon="inline-start" />
-                Previous
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                disabled={activeStepIndex === nodes.length - 1}
-                onClick={() => handleStepChange(activeStepIndex + 1)}
-              >
-                Next
-                <ChevronRight data-icon="inline-end" />
-              </Button>
+              <div className="flex flex-nowrap items-center gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="shrink-0 whitespace-nowrap"
+                  disabled={activeStepIndex === 0}
+                  onClick={() => handleStepChange(activeStepIndex - 1)}
+                >
+                  <ChevronLeft data-icon="inline-start" />
+                  Previous
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="shrink-0 whitespace-nowrap"
+                  disabled={activeStepIndex === nodes.length - 1}
+                  onClick={() => handleStepChange(activeStepIndex + 1)}
+                >
+                  Next
+                  <ChevronRight data-icon="inline-end" />
+                </Button>
+              </div>
             </div>
           </div>
         </CardHeader>
@@ -155,11 +159,11 @@ export function ClaimProcessStepper({
             }}
             className="gap-6"
           >
-            <div className="-mx-1 overflow-x-auto px-1 pb-2">
+            <div className="dashboard-scrollbar -mx-1 overflow-x-auto px-1 pb-4">
               <TabsList
                 variant="line"
                 aria-label="Claim process steps"
-                className="flex-nowrap gap-2 rounded-none p-0"
+                className="flex-nowrap gap-2 rounded-none p-0 pr-1"
               >
                 {nodes.map((node, index) => {
                   const definition = getClaimNodeRegistryItem(node.kind);
@@ -168,7 +172,7 @@ export function ClaimProcessStepper({
                     <TabsTrigger
                       key={node.id}
                       value={node.id}
-                      className="h-auto min-w-36 flex-col items-start rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 data-[state=active]:border-primary/35 data-[state=active]:bg-primary/10 data-[state=active]:text-foreground"
+                      className="h-auto min-w-36 flex-col items-start rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 transition-colors data-[state=active]:border-primary/40 data-[state=active]:bg-primary/18 data-[state=active]:text-foreground data-[state=active]:shadow-[0_16px_28px_-22px_color-mix(in_oklab,var(--primary)_80%,transparent)] data-[state=active]:ring-1 data-[state=active]:ring-primary/30"
                     >
                       <span className="font-medium text-[0.68rem] uppercase tracking-[0.18em]">
                         Step {index + 1}

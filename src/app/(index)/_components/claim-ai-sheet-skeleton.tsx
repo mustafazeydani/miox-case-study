@@ -9,6 +9,7 @@ import {
   SheetContent,
   SheetFooter,
   SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -42,6 +43,7 @@ export function ClaimAiSheetSkeleton() {
         className="surface-glass flex w-full max-w-[38rem] flex-col gap-0 overflow-y-auto border-border/70"
       >
         <SheetHeader className="gap-3 border-border/70 border-b px-5 py-5 sm:px-6">
+          <SheetTitle className="sr-only">Loading AI summary</SheetTitle>
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="rounded-full">
               <Bot data-icon="inline-start" />

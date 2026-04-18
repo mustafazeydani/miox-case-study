@@ -142,6 +142,17 @@
     color-scheme: dark;
   }
 
+  html,
+  body {
+    scrollbar-color: color-mix(
+        in oklab,
+        var(--primary) 52%,
+        var(--muted-foreground)
+      )
+      transparent;
+    scrollbar-width: thin;
+  }
+
   body {
     @apply bg-background text-foreground;
     background-image:
@@ -161,6 +172,35 @@
   ::selection {
     background: color-mix(in oklab, var(--primary) 36%, var(--background));
     color: var(--foreground);
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primary) 50%, var(--muted-foreground)),
+      color-mix(in oklab, var(--primary) 24%, var(--muted-foreground))
+    );
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primary) 70%, var(--foreground)),
+      color-mix(in oklab, var(--primary) 42%, var(--muted-foreground))
+    );
+    background-clip: padding-box;
   }
 }
 
