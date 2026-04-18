@@ -1,4 +1,4 @@
-import { claimProcess } from "@/lib/claim-process";
+import { claimProcess } from "@/app/(index)/_utils/schemas";
 
 export const dynamic = "force-static";
 

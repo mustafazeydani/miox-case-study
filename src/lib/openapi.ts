@@ -1,6 +1,6 @@
 import { createDocument } from "zod-openapi";
 
-import { claimApiPath, claimProcessSchema } from "@/lib/claim-process";
+import { claimApiPath, claimProcessSchema } from "@/app/(index)/_utils/schemas";
 
 export function getOpenApiDocument() {
   return createDocument(

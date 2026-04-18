@@ -1,7 +1,10 @@
 import type { UseQueryOptions, UseQueryResult } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
 import type { ZodError } from "zod";
-import { type ClaimProcess, claimProcessSchema } from "@/lib/claim-process";
+import {
+  type ClaimProcess,
+  claimProcessSchema,
+} from "@/app/(index)/_utils/schemas";
 import {
   getGetMockClaimProcessQueryKey,
   getMockClaimProcess,
