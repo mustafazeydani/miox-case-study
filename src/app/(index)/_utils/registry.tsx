@@ -1,0 +1,96 @@
+import type { LucideIcon } from "lucide-react";
+import {
+  Archive,
+  BadgeCheck,
+  Bell,
+  CarFront,
+  FolderOpen,
+  ShieldAlert,
+  Truck,
+  Wallet,
+} from "lucide-react";
+
+import type { ClaimDashboardApiNodeKind } from "./types";
+
+export interface ClaimNodeRegistryItem {
+  eyebrow: string;
+  description: string;
+  icon: LucideIcon;
+  accentClassName: string;
+  spotlightFieldKey: string | null;
+  metricFieldKeys: string[];
+}
+
+export const claimNodeRegistry = {
+  "towing-service": {
+    eyebrow: "Mobility Service",
+    description: "Vehicle pickup, transport timing, and handoff details.",
+    icon: Truck,
+    accentClassName: "border-sky-200/70 bg-sky-50 text-sky-700",
+    spotlightFieldKey: "pickupLocation",
+    metricFieldKeys: ["towingDate"],
+  },
+  "claim-notification": {
+    eyebrow: "Claim Intake",
+    description: "How the case was reported and who initiated the process.",
+    icon: Bell,
+    accentClassName: "border-violet-200/70 bg-violet-50 text-violet-700",
+    spotlightFieldKey: "reasonForDamage",
+    metricFieldKeys: ["reportType", "dateTime"],
+  },
+  appraisal: {
+    eyebrow: "Expert Review",
+    description: "Appraisal assignment details and report completion status.",
+    icon: BadgeCheck,
+    accentClassName: "border-emerald-200/70 bg-emerald-50 text-emerald-700",
+    spotlightFieldKey: "expertInfo",
+    metricFieldKeys: ["expertAssignmentDate", "contact"],
+  },
+  "substitute-rental-vehicle": {
+    eyebrow: "Courtesy Mobility",
+    description: "Replacement vehicle support arranged while repairs continue.",
+    icon: CarFront,
+    accentClassName: "border-cyan-200/70 bg-cyan-50 text-cyan-700",
+    spotlightFieldKey: "vehicleModel",
+    metricFieldKeys: ["vehicleDuration", "extraDuration"],
+  },
+  "file-review": {
+    eyebrow: "Review Desk",
+    description:
+      "The claim file is being evaluated against the full case data.",
+    icon: FolderOpen,
+    accentClassName: "border-amber-200/70 bg-amber-50 text-amber-700",
+    spotlightFieldKey: "reviewCompletionDate",
+    metricFieldKeys: ["reviewReferralDate"],
+  },
+  "deduction-reason": {
+    eyebrow: "Action Required",
+    description:
+      "Outstanding deductions and the document request blocking progress.",
+    icon: ShieldAlert,
+    accentClassName: "border-rose-200/70 bg-rose-50 text-rose-700",
+    spotlightFieldKey: "actionRequired",
+    metricFieldKeys: ["policyDeductible", "appreciationDeduction"],
+  },
+  "payment-information": {
+    eyebrow: "Settlement",
+    description: "Payout destination and reimbursement summary before release.",
+    icon: Wallet,
+    accentClassName: "border-emerald-200/70 bg-emerald-50 text-emerald-700",
+    spotlightFieldKey: "paymentAmount",
+    metricFieldKeys: ["paidTo", "iban"],
+  },
+  closed: {
+    eyebrow: "Closure",
+    description:
+      "Final closeout details once all prior obligations are resolved.",
+    icon: Archive,
+    accentClassName: "border-slate-200/70 bg-slate-100 text-slate-700",
+    spotlightFieldKey: "completionDate",
+    metricFieldKeys: [],
+  },
+} satisfies Record<ClaimDashboardApiNodeKind, ClaimNodeRegistryItem>;
+
+export function getClaimNodeRegistryItem(kind: ClaimDashboardApiNodeKind) {
+  return claimNodeRegistry[kind];
+}
