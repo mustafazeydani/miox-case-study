@@ -1,5 +1,8 @@
 import type { ClaimDashboardViewModel } from "../_utils/types";
+import { ClaimActionRail } from "./claim-action-rail";
+import { ClaimProcessTimeline } from "./claim-process-timeline";
 import { ClaimSummaryStrip } from "./claim-summary-strip";
+import { FloatingDocsButton } from "./floating-docs-button";
 
 interface ClaimDashboardProps {
   viewModel: ClaimDashboardViewModel;
@@ -9,7 +12,7 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
   const { overview } = viewModel;
 
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-10 pb-28 sm:px-6 lg:px-8 lg:py-14 lg:pb-24">
       <div className="surface-glass relative overflow-hidden rounded-[2rem] border border-white/70 px-6 py-8 shadow-[0_20px_70px_-32px_rgba(21,57,90,0.45)] ring-1 ring-black/4 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-end">
@@ -63,7 +66,15 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
         </div>
       </div>
 
-      <ClaimSummaryStrip viewModel={viewModel} />
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_22rem] xl:items-start">
+        <div className="space-y-6">
+          <ClaimSummaryStrip viewModel={viewModel} />
+          <ClaimProcessTimeline nodes={viewModel.apiNodes} />
+        </div>
+        <ClaimActionRail overview={overview} nodes={viewModel.apiNodes} />
+      </div>
+
+      <FloatingDocsButton />
     </section>
   );
 }
