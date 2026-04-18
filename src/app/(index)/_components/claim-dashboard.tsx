@@ -1,3 +1,11 @@
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import type { ClaimDashboardViewModel } from "../_utils/types";
 import { ClaimActionRail } from "./claim-action-rail";
 import { ClaimProcessTimeline } from "./claim-process-timeline";
@@ -17,9 +25,12 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-end">
           <div className="space-y-6">
-            <span className="inline-flex w-fit items-center rounded-full border border-primary/20 bg-primary/8 px-3 py-1 font-semibold text-[0.7rem] text-primary uppercase tracking-[0.24em]">
+            <Badge
+              variant="outline"
+              className="w-fit rounded-full border-primary/20 bg-primary/8 px-3 py-1 font-semibold text-[0.7rem] text-primary uppercase tracking-[0.24em]"
+            >
               Live Claim Orchestration
-            </span>
+            </Badge>
             <div className="space-y-4">
               <h1 className="max-w-3xl text-balance font-heading font-semibold text-4xl text-foreground leading-none tracking-[-0.03em] sm:text-5xl lg:text-6xl">
                 {overview.title}
@@ -31,17 +42,16 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
               </p>
             </div>
           </div>
-          <div className="surface-soft rounded-[1.75rem] border border-border/70 p-5 shadow-sm">
-            <p className="font-semibold text-muted-foreground text-xs uppercase tracking-[0.24em]">
-              Claim Snapshot
-            </p>
-            <div className="mt-4 space-y-4">
-              <div>
-                <p className="text-muted-foreground text-sm">Active stage</p>
-                <p className="mt-1 font-heading font-semibold text-2xl text-foreground leading-none">
-                  {overview.currentStage}
-                </p>
-              </div>
+          <Card className="surface-soft gap-0 rounded-[1.75rem] border-border/70 shadow-sm">
+            <CardHeader className="gap-3">
+              <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+                Claim Snapshot
+              </CardDescription>
+              <CardTitle className="font-semibold text-2xl leading-none">
+                {overview.currentStage}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Progress</span>
@@ -61,15 +71,18 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
               <p className="text-muted-foreground text-sm">
                 {overview.currentStatus}
               </p>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_22rem] xl:items-start">
         <div className="space-y-6">
           <ClaimSummaryStrip viewModel={viewModel} />
-          <ClaimProcessTimeline nodes={viewModel.apiNodes} />
+          <ClaimProcessTimeline
+            nodes={viewModel.apiNodes}
+            insertSlots={viewModel.insertSlots}
+          />
         </div>
         <ClaimActionRail overview={overview} nodes={viewModel.apiNodes} />
       </div>

@@ -4,11 +4,29 @@ import {
   Hourglass,
   ShieldCheck,
 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Separator } from "@/components/ui/separator";
 
 import type {
   ClaimDashboardApiNode,
   ClaimDashboardOverview,
 } from "../_utils/types";
+import { ClaimStatusPill } from "./claim-status-pill";
 
 interface ClaimActionRailProps {
   overview: ClaimDashboardOverview;
@@ -21,66 +39,99 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
   );
 
   return (
-    <aside className="surface-glass rounded-[1.75rem] border border-white/70 p-5 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)] sm:p-6 xl:sticky xl:top-8">
-      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-[0.24em]">
-        Action Rail
-      </p>
+    <Card className="surface-glass rounded-[1.75rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)] xl:sticky xl:top-8">
+      <CardHeader className="gap-3">
+        <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+          Action Rail
+        </CardDescription>
+        <CardTitle className="font-semibold text-2xl leading-tight">
+          What the claimant should know right now.
+        </CardTitle>
+      </CardHeader>
 
-      <div className="mt-6 space-y-4">
-        <div className="rounded-[1.4rem] border border-primary/12 bg-primary/8 p-4">
-          <div className="flex items-center gap-3">
-            <CircleAlert className="size-5 text-primary" />
-            <p className="font-semibold text-foreground">Need attention</p>
-          </div>
-          <p className="mt-3 text-muted-foreground text-sm leading-6">
-            {overview.actionableHeadline}
-          </p>
-        </div>
+      <CardContent className="flex flex-col gap-5">
+        <Alert className="border-primary/15 bg-primary/6">
+          <CircleAlert />
+          <AlertTitle>Need attention</AlertTitle>
+          <AlertDescription>{overview.actionableHeadline}</AlertDescription>
+        </Alert>
 
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-          <div className="rounded-[1.4rem] border border-border/70 bg-white/50 p-4">
-            <div className="flex items-center gap-3">
-              <Hourglass className="size-5 text-primary" />
-              <p className="font-semibold text-foreground">Remaining time</p>
-            </div>
-            <p className="mt-3 font-heading font-semibold text-3xl text-foreground leading-none">
-              {overview.estimatedRemainingTime}
-            </p>
-          </div>
+          <Card
+            size="sm"
+            className="rounded-[1.4rem] border border-border/70 bg-white/50"
+          >
+            <CardHeader className="gap-3">
+              <CardDescription className="flex items-center gap-2 text-foreground text-sm">
+                <Hourglass className="text-primary" />
+                Remaining time
+              </CardDescription>
+              <CardTitle className="font-semibold text-3xl leading-none">
+                {overview.estimatedRemainingTime}
+              </CardTitle>
+            </CardHeader>
+          </Card>
 
-          <div className="rounded-[1.4rem] border border-border/70 bg-white/50 p-4">
-            <div className="flex items-center gap-3">
-              <CircleCheckBig className="size-5 text-emerald-600" />
-              <p className="font-semibold text-foreground">Completed</p>
-            </div>
-            <p className="mt-3 font-heading font-semibold text-3xl text-foreground leading-none">
-              {overview.completedCount}/{overview.totalCount}
-            </p>
-          </div>
+          <Card
+            size="sm"
+            className="rounded-[1.4rem] border border-border/70 bg-white/50"
+          >
+            <CardHeader className="gap-3">
+              <CardDescription className="flex items-center gap-2 text-foreground text-sm">
+                <CircleCheckBig className="text-emerald-600" />
+                Completed
+              </CardDescription>
+              <CardTitle className="font-semibold text-3xl leading-none">
+                {overview.completedCount}/{overview.totalCount}
+              </CardTitle>
+            </CardHeader>
+          </Card>
         </div>
 
-        <div className="rounded-[1.4rem] border border-border/70 bg-white/50 p-4">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="size-5 text-primary" />
-            <p className="font-semibold text-foreground">Open nodes</p>
+        <Separator />
+
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="text-primary" />
+            <p className="font-medium text-foreground text-sm">Open nodes</p>
           </div>
-          <ul className="mt-4 space-y-3">
-            {activeNodes.map((node) => (
-              <li
-                key={node.id}
-                className="rounded-2xl border border-border/60 bg-background/70 px-3.5 py-3"
-              >
-                <p className="font-medium text-foreground text-sm">
-                  {node.title}
-                </p>
-                <p className="mt-1 text-muted-foreground text-sm">
-                  {node.status}
-                </p>
-              </li>
-            ))}
-          </ul>
+
+          {activeNodes.length > 0 ? (
+            <div className="flex flex-col gap-3">
+              {activeNodes.map((node) => (
+                <Card
+                  key={node.id}
+                  size="sm"
+                  className="rounded-[1.4rem] border border-border/70 bg-white/50"
+                >
+                  <CardHeader className="gap-2">
+                    <CardTitle className="font-medium text-base">
+                      {node.title}
+                    </CardTitle>
+                    <CardAction>
+                      <ClaimStatusPill status={node.status} tone={node.tone} />
+                    </CardAction>
+                    <CardDescription>{node.summary}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Empty className="rounded-[1.4rem] border border-border/70 border-dashed bg-white/35 p-6">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <ShieldCheck />
+                </EmptyMedia>
+                <EmptyTitle>No open nodes</EmptyTitle>
+                <EmptyDescription>
+                  All claim steps are completed or waiting on back-office
+                  completion.
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          )}
         </div>
-      </div>
-    </aside>
+      </CardContent>
+    </Card>
   );
 }

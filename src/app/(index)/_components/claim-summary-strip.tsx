@@ -1,3 +1,12 @@
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 import type { ClaimDashboardViewModel } from "../_utils/types";
 
 interface ClaimSummaryStripProps {
@@ -9,44 +18,63 @@ export function ClaimSummaryStrip({ viewModel }: ClaimSummaryStripProps) {
 
   return (
     <div className="grid gap-4 lg:grid-cols-3">
-      <article className="surface-glass rounded-[1.5rem] border border-white/70 p-5 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
-        <p className="font-semibold text-muted-foreground text-xs uppercase tracking-[0.24em]">
-          Current Status
-        </p>
-        <p className="mt-4 font-heading font-semibold text-3xl text-foreground leading-none">
-          {overview.claimNumber}
-        </p>
-        <p className="mt-3 text-muted-foreground text-sm">
-          Current stage:{" "}
-          <span className="font-medium text-foreground">
-            {overview.currentStage}
-          </span>
-        </p>
-      </article>
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+        <CardHeader className="gap-3">
+          <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+            Current Status
+          </CardDescription>
+          <CardTitle className="font-semibold text-3xl leading-none">
+            {overview.claimNumber}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="secondary" className="rounded-full">
+              Live file
+            </Badge>
+            <p className="text-muted-foreground text-sm">
+              Current stage:{" "}
+              <span className="font-medium text-foreground">
+                {overview.currentStage}
+              </span>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <article className="surface-glass rounded-[1.5rem] border border-white/70 p-5 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
-        <p className="font-semibold text-muted-foreground text-xs uppercase tracking-[0.24em]">
-          Estimation
-        </p>
-        <p className="mt-4 font-heading font-semibold text-3xl text-foreground leading-none">
-          {overview.estimatedRemainingTime}
-        </p>
-        <p className="mt-3 text-muted-foreground text-sm">
-          Based on the current process state and remaining open steps.
-        </p>
-      </article>
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+        <CardHeader className="gap-3">
+          <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+            Estimation
+          </CardDescription>
+          <CardTitle className="font-semibold text-3xl leading-none">
+            {overview.estimatedRemainingTime}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground text-sm">
+            Based on the current process state and remaining open steps.
+          </p>
+        </CardContent>
+      </Card>
 
-      <article className="surface-glass rounded-[1.5rem] border border-white/70 p-5 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
-        <p className="font-semibold text-muted-foreground text-xs uppercase tracking-[0.24em]">
-          Actionability
-        </p>
-        <p className="mt-4 font-medium text-primary text-sm">
-          {overview.actionableNow}
-        </p>
-        <p className="mt-3 font-heading font-semibold text-2xl text-foreground leading-tight">
-          {overview.actionableHeadline}
-        </p>
-      </article>
+      <Card className="surface-glass gap-0 rounded-[1.5rem] border-white/70 shadow-[0_18px_40px_-34px_rgba(21,57,90,0.38)]">
+        <CardHeader className="gap-3">
+          <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
+            Actionability
+          </CardDescription>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge className="rounded-full bg-primary/10 text-primary hover:bg-primary/15">
+              {overview.actionableNow}
+            </Badge>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <CardTitle className="font-semibold text-2xl leading-tight">
+            {overview.actionableHeadline}
+          </CardTitle>
+        </CardContent>
+      </Card>
     </div>
   );
 }

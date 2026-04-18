@@ -38,12 +38,12 @@ export function formatProcessFields(
 export function createTimelineInsertSlots(
   length: number,
 ): TimelineInsertSlot[] {
-  return Array.from({ length: length + 1 }, (_, index) => ({
+  return Array.from({ length }, (_, index) => ({
     index,
     label:
-      index === length
+      index === length - 1
         ? "Add after the final step"
-        : `Add after step ${index + 1}`,
+        : `Add between steps ${index + 1} and ${index + 2}`,
   }));
 }
 

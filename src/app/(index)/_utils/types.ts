@@ -56,6 +56,7 @@ export interface ClaimDashboardApiNode {
 export interface InformationNoteNode {
   id: string;
   source: "local";
+  afterIndex: number;
   kind: "information-note";
   title: string;
   note: string;
@@ -65,6 +66,7 @@ export interface InformationNoteNode {
 export interface AdditionalAttachmentNode {
   id: string;
   source: "local";
+  afterIndex: number;
   kind: "additional-attachment";
   title: string;
   fileName: string;
