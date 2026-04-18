@@ -22,9 +22,10 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getMockExplainResult } from "../_utils/ai";
+import type { ExplainResult } from "@/orval/generated/model";
+import { postMockAiExplain } from "@/orval/generated/react-query/mock-ai";
 import type { ClaimNodeRegistryItem } from "../_utils/registry";
-import type { ClaimDashboardApiNode, ExplainResult } from "../_utils/types";
+import type { ClaimDashboardApiNode } from "../_utils/types";
 import { ClaimStatusPill } from "./claim-status-pill";
 
 interface ClaimAiSheetProps {
@@ -55,7 +56,9 @@ export function ClaimAiSheet({
 
       setIsLoading(true);
       setResult(null);
-      const nextResult = await getMockExplainResult(node.raw);
+      const nextResult = await postMockAiExplain({
+        detail: node.raw,
+      });
 
       if (isCancelled) {
         return;
@@ -81,7 +84,9 @@ export function ClaimAiSheet({
 
     setIsLoading(true);
     setResult(null);
-    const nextResult = await getMockExplainResult(node.raw);
+    const nextResult = await postMockAiExplain({
+      detail: node.raw,
+    });
     startTransition(() => {
       setResult(nextResult);
       setIsLoading(false);
@@ -120,7 +125,7 @@ export function ClaimAiSheet({
               className="rounded-[1.25rem] border-border/70 bg-background/45"
             >
               <CardHeader className="gap-2">
-                <CardDescription>Current step summary</CardDescription>
+                <CardDescription>Latest update</CardDescription>
                 <CardTitle className="font-semibold text-base">
                   {node.summary}
                 </CardTitle>
@@ -149,7 +154,7 @@ export function ClaimAiSheet({
             <>
               <Card className="rounded-[1.25rem] border-border/70 bg-background/45">
                 <CardHeader className="gap-3">
-                  <CardDescription>AI interpretation</CardDescription>
+                  <CardDescription>What this means</CardDescription>
                   <CardTitle className="font-semibold text-xl leading-tight">
                     {result.heading}
                   </CardTitle>
@@ -187,7 +192,7 @@ export function ClaimAiSheet({
                 className="rounded-[1.25rem] border-border/70 bg-background/45"
               >
                 <CardHeader className="gap-2">
-                  <CardDescription>Confidence label</CardDescription>
+                  <CardDescription>Assessment</CardDescription>
                   <CardTitle className="font-semibold text-base">
                     {result.confidenceLabel}
                   </CardTitle>
@@ -209,7 +214,7 @@ export function ClaimAiSheet({
             ) : (
               <RefreshCcw data-icon="inline-start" />
             )}
-            Retry explanation
+            Refresh summary
           </Button>
           <Button
             type="button"

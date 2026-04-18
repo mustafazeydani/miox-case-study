@@ -1,16 +1,19 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/react-query";
+import { getGetMockClaimProcessQueryOptions } from "@/orval/generated/react-query/claims";
 import { DashboardErrorState } from "./_components/dashboard-error-state";
 import { HomePage } from "./_components/home-page";
 import { createClaimDashboardViewModel } from "./_utils/mappers";
-import { getClaimProcessQueryOptions } from "./_utils/queries";
+import { claimProcessSchema } from "./_utils/schemas";
 
 export default async function Page() {
   const queryClient = getQueryClient();
-  const claimProcessQueryOptions = getClaimProcessQueryOptions();
+  const claimProcessQueryOptions = getGetMockClaimProcessQueryOptions();
 
   try {
-    const process = await queryClient.fetchQuery(claimProcessQueryOptions);
+    const process = claimProcessSchema.parse(
+      await queryClient.fetchQuery(claimProcessQueryOptions),
+    );
     const viewModel = createClaimDashboardViewModel(process);
 
     return (

@@ -1,3 +1,7 @@
+import type {
+  DocumentAnalysisResult as OrvalDocumentAnalysisResult,
+  ExplainResult as OrvalExplainResult,
+} from "@/orval/generated/model";
 import type { ClaimProcess, ProcessDetail } from "./schemas";
 
 export type ClaimNodeTone = "complete" | "report" | "current" | "pending";
@@ -94,24 +98,5 @@ export interface ClaimDashboardViewModel {
   insertSlots: TimelineInsertSlot[];
 }
 
-export interface ExplainResult {
-  heading: string;
-  summary: string;
-  highlights: string[];
-  suggestedAction: string;
-  confidenceLabel: string;
-}
-
-export type DocumentAnalysisState =
-  | "idle"
-  | "loading"
-  | "accepted"
-  | "warning"
-  | "rejected";
-
-export interface DocumentAnalysisResult {
-  state: DocumentAnalysisState;
-  title: string;
-  summary: string;
-  checks: string[];
-}
+export type ExplainResult = OrvalExplainResult;
+export type DocumentAnalysisResult = OrvalDocumentAnalysisResult;

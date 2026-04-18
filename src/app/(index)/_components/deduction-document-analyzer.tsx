@@ -27,8 +27,8 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { getMockDocumentAnalysis } from "../_utils/ai";
-import type { DocumentAnalysisResult } from "../_utils/types";
+import type { DocumentAnalysisResult } from "@/orval/generated/model";
+import { postMockAiDocumentAnalysis } from "@/orval/generated/react-query/mock-ai";
 
 interface DeductionDocumentAnalyzerProps {
   requestLabel: string;
@@ -81,7 +81,12 @@ export function DeductionDocumentAnalyzer({
 
     setIsAnalyzing(true);
     setAnalysisResult(null);
-    const result = await getMockDocumentAnalysis(selectedFile, requestLabel);
+    const result = await postMockAiDocumentAnalysis({
+      fileName: selectedFile.name,
+      contentType: selectedFile.type || undefined,
+      sizeInBytes: selectedFile.size,
+      requestedDocument: requestLabel,
+    });
     startTransition(() => {
       setAnalysisResult(result);
       setIsAnalyzing(false);
