@@ -132,15 +132,15 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
               {slot.label}
             </CardTitle>
             <CardDescription>
-              Choose the node type, then capture the context that should appear
-              in the timeline after this step.
+              Choose the update type, then capture the context that should
+              appear in the timeline after this step.
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             <FieldSet>
               <FieldLegend className="sr-only">
-                Node type and details
+                Update type and details
               </FieldLegend>
               <FieldDescription>
                 This update stays with the claim so the latest details are easy
@@ -148,7 +148,7 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
               </FieldDescription>
               <FieldGroup>
                 <Field>
-                  <FieldLabel>Node type</FieldLabel>
+                  <FieldLabel>Update type</FieldLabel>
                   <ToggleGroup
                     type="single"
                     value={mode}
@@ -255,12 +255,12 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
                   {mode === "information-note" ? (
                     noteInvalid ? (
                       <FieldError>
-                        Add note content before saving this inserted node.
+                        Add note content before saving this update.
                       </FieldError>
                     ) : null
                   ) : descriptionInvalid ? (
                     <FieldError>
-                      Describe the attachment before saving this inserted node.
+                      Describe the attachment before saving this update.
                     </FieldError>
                   ) : null}
                 </Field>
@@ -271,7 +271,7 @@ export function TimelineInsertComposer({ slot }: TimelineInsertComposerProps) {
           <CardFooter className="flex flex-wrap gap-2">
             <Button type="submit">
               <Plus data-icon="inline-start" />
-              Save node
+              Save update
             </Button>
             <Button type="button" variant="ghost" onClick={resetComposer}>
               Cancel

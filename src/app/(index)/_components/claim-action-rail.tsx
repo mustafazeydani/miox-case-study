@@ -42,17 +42,17 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
     <Card className="surface-glass rounded-[1.75rem] border-border/70 shadow-[0_18px_40px_-34px_rgba(5,10,26,0.58)] xl:sticky xl:top-8">
       <CardHeader className="gap-3">
         <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
-          Action Rail
+          What To Watch
         </CardDescription>
         <CardTitle className="font-semibold text-2xl leading-tight">
-          What the claimant should know right now.
+          What needs your attention right now.
         </CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-5">
         <Alert className="border-primary/15 bg-primary/6">
           <CircleAlert />
-          <AlertTitle>Need attention</AlertTitle>
+          <AlertTitle>Next step</AlertTitle>
           <AlertDescription>{overview.actionableHeadline}</AlertDescription>
         </Alert>
 
@@ -93,7 +93,7 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-primary" />
-            <p className="font-medium text-foreground text-sm">Open nodes</p>
+            <p className="font-medium text-foreground text-sm">Current items</p>
           </div>
 
           {activeNodes.length > 0 ? (
@@ -122,10 +122,10 @@ export function ClaimActionRail({ overview, nodes }: ClaimActionRailProps) {
                 <EmptyMedia variant="icon">
                   <ShieldCheck />
                 </EmptyMedia>
-                <EmptyTitle>No open nodes</EmptyTitle>
+                <EmptyTitle>Nothing waiting on you</EmptyTitle>
                 <EmptyDescription>
-                  All claim steps are completed or waiting on back-office
-                  completion.
+                  The remaining steps are either complete or still being handled
+                  in the background.
                 </EmptyDescription>
               </EmptyHeader>
             </Empty>
