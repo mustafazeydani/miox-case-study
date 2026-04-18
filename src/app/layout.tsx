@@ -33,7 +33,6 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        "dark",
         "h-full",
         "antialiased",
         manrope.variable,
@@ -46,7 +45,6 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
           enableSystem={false}
-          forcedTheme="dark"
         >
           <AppQueryClientProvider>{children}</AppQueryClientProvider>
         </AppThemeProvider>

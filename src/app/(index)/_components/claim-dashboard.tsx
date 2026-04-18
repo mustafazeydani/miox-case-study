@@ -11,6 +11,7 @@ import { ClaimActionRail } from "./claim-action-rail";
 import { ClaimProcessTimeline } from "./claim-process-timeline";
 import { ClaimSummaryStrip } from "./claim-summary-strip";
 import { FloatingDocsButton } from "./floating-docs-button";
+import { ThemeToggleButton } from "./theme-toggle-button";
 
 interface ClaimDashboardProps {
   viewModel: ClaimDashboardViewModel;
@@ -26,6 +27,9 @@ export function ClaimDashboard({ viewModel }: ClaimDashboardProps) {
     >
       <div className="surface-glass relative overflow-hidden rounded-[2rem] border border-border/70 px-6 py-8 shadow-[0_20px_70px_-32px_rgba(5,10,26,0.62)] ring-1 ring-primary/10 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="mb-6 flex justify-end">
+          <ThemeToggleButton />
+        </div>
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-end">
           <div className="space-y-6">
             <Badge
