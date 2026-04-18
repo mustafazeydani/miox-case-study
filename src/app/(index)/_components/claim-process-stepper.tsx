@@ -159,11 +159,11 @@ export function ClaimProcessStepper({
             }}
             className="gap-6"
           >
-            <div className="dashboard-scrollbar -mx-1 overflow-x-auto px-1 pb-4">
+            <div className="dashboard-scrollbar -mx-1 overflow-x-auto overflow-y-hidden px-1 py-1 pb-3">
               <TabsList
                 variant="line"
                 aria-label="Claim process steps"
-                className="flex-nowrap gap-2 rounded-none p-0 pr-1"
+                className="h-auto min-h-0 flex-nowrap items-stretch gap-2 rounded-none p-0 pr-1"
               >
                 {nodes.map((node, index) => {
                   const definition = getClaimNodeRegistryItem(node.kind);
@@ -172,7 +172,7 @@ export function ClaimProcessStepper({
                     <TabsTrigger
                       key={node.id}
                       value={node.id}
-                      className="h-auto min-w-36 flex-col items-start rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 transition-colors data-[state=active]:border-primary/40 data-[state=active]:bg-primary/18 data-[state=active]:text-foreground data-[state=active]:shadow-[0_16px_28px_-22px_color-mix(in_oklab,var(--primary)_80%,transparent)] data-[state=active]:ring-1 data-[state=active]:ring-primary/30"
+                      className="h-auto min-w-36 shrink-0 flex-col items-start rounded-[1.1rem] border border-border/70 bg-background/45 px-4 py-3 text-left text-foreground/80 transition-colors data-[state=active]:border-primary/40 data-[state=active]:bg-primary/18 data-[state=active]:text-foreground data-[state=active]:shadow-[0_16px_28px_-22px_color-mix(in_oklab,var(--primary)_80%,transparent)] data-[state=active]:ring-1 data-[state=active]:ring-primary/30"
                     >
                       <span className="font-medium text-[0.68rem] uppercase tracking-[0.18em]">
                         Step {index + 1}
