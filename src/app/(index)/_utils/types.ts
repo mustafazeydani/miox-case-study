@@ -30,8 +30,10 @@ export interface ClaimDashboardOverview {
   title: string;
   claimNumber: string;
   currentStage: string;
+  currentStatus: string;
   estimatedRemainingTime: string;
   actionableNow: string;
+  actionableHeadline: string;
   actionableStepTitle: string | null;
   completionRatio: number;
   completedCount: number;
