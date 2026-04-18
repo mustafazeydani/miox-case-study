@@ -61,7 +61,7 @@ export function ClaimNodeCard({
               >
                 <Icon />
               </div>
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <CardDescription className="font-semibold text-xs uppercase tracking-[0.24em]">
                   {definition.eyebrow}
                 </CardDescription>
@@ -127,20 +127,20 @@ export function ClaimNodeCard({
 
           <Separator />
 
-          <dl className="grid gap-3 md:grid-cols-2">
+          <dl className="grid items-start gap-3 md:grid-cols-2">
             {node.fields.map((field) => (
               <Card
                 key={field.key}
                 size="sm"
-                className="gap-0 rounded-2xl border border-border/60 bg-background/70"
+                className="h-fit gap-0 rounded-2xl border border-border/60 bg-background/70 py-3"
               >
-                <CardHeader className="gap-2 pb-2">
-                  <CardDescription className="font-medium text-xs uppercase tracking-[0.18em]">
+                <CardHeader className="gap-1 pb-1">
+                  <CardDescription className="font-medium text-xs uppercase leading-none tracking-[0.18em]">
                     {field.label}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <dd className="text-foreground text-sm leading-6">
+                  <dd className="text-foreground text-sm leading-5">
                     {field.value}
                   </dd>
                 </CardContent>
