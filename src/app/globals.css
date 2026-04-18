@@ -242,16 +242,12 @@
     text-wrap: balance;
   }
 
-  .dashboard-scrollbar {
-    scrollbar-gutter: stable;
-  }
-
   .dashboard-scrollbar::-webkit-scrollbar {
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.4rem;
+    height: 0.4rem;
   }
 
   .dashboard-scrollbar::-webkit-scrollbar-thumb {
-    border-width: 2px;
+    border-width: 1px;
   }
 }
